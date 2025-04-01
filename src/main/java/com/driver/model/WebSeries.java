@@ -23,6 +23,8 @@ public class WebSeries {
 
     private int ageLimit;
 
+    private String genre;
+
     private double rating;
 
     private SubscriptionType subscriptionType; //This denotes with which of subscriptionType this webseries comes ie. BASIC,PRO, ELITE
@@ -30,6 +32,7 @@ public class WebSeries {
     @ManyToOne
     @JoinColumn
     private ProductionHouse productionHouse;
+    private String genre;
 
     public WebSeries(String seriesName, int ageLimit, double rating, SubscriptionType subscriptionType) {
         this.seriesName = seriesName;
@@ -88,5 +91,9 @@ public class WebSeries {
 
     public void setProductionHouse(ProductionHouse productionHouse) {
         this.productionHouse = productionHouse;
+    }
+
+    public void setGenre(String genre) {
+        this.genre=genre;
     }
 }
