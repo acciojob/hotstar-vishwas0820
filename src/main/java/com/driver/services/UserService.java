@@ -1,3 +1,4 @@
+
 package com.driver.services;
 
 
@@ -33,20 +34,36 @@ public class UserService {
 
         //Return the count of all webSeries that a user can watch based on his ageLimit and subscriptionType
         //Hint: Take out all the Webseries from the WebRepository
-
-
+        // Get user from DB
         User user = userRepository.findById(userId).orElse(null);
-        if (user == null || user.getSubscription() == null) {
-            return 0;
+        if (user == null || user.getSubscription() == null) return 0;
+
+        int userAge = user.getAge();
+        Subscription subscription = user.getSubscription();
+        SubscriptionType userSubType = subscription.getSubscriptionType();
+
+        // Get all web series
+        List<WebSeries> allWebSeries = webSeriesRepository.findAll();
+
+        int count = 0;
+        for (WebSeries webSeries : allWebSeries) {
+            if (userAge >= webSeries.getAgeLimit()) {
+                SubscriptionType requiredSub = webSeries.getSubscriptionType();
+                // Check if user’s subscription allows them to view this series
+                if (canView(userSubType, requiredSub)) {
+                    count++;
+                }
+            }
         }
 
-        int ageLimit = user.getAge();
-        SubscriptionType subscriptionType = user.getSubscription().getSubscriptionType();
+        return count;
 
-        List<WebSeries> allWebSeries = webSeriesRepository.findAll();
-        return (int) allWebSeries.stream()
-                .filter(ws -> ws.getAgeLimit() <= ageLimit)
-                .count();
+    }
+
+    private boolean canView(SubscriptionType userType, SubscriptionType requiredType) {
+        if (userType == SubscriptionType.ELITE) return true;
+        if (userType == SubscriptionType.PRO && requiredType != SubscriptionType.ELITE) return true;
+        return userType == SubscriptionType.BASIC && requiredType == SubscriptionType.BASIC;
     }
 
 

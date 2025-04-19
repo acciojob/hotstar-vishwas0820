@@ -1,3 +1,4 @@
+
 package com.driver.EntryDto;
 
 import com.driver.model.ProductionHouse;
@@ -16,8 +17,6 @@ public class WebSeriesEntryDto {
 
     private double rating;
 
-    private String genre;
-
     private SubscriptionType subscriptionType; //This denotes with which of subscriptionType this webseries comes ie. BASIC,PRO, ELITE
 
     private Integer productionHouseId;
@@ -28,7 +27,6 @@ public class WebSeriesEntryDto {
         this.rating = rating;
         this.subscriptionType = subscriptionType;
         this.productionHouseId = productionHouseId;
-        this.genre = genre;
     }
 
     public String getSeriesName() {
@@ -69,13 +67,5 @@ public class WebSeriesEntryDto {
 
     public void setProductionHouseId(Integer productionHouseId) {
         this.productionHouseId = productionHouseId;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
     }
 }

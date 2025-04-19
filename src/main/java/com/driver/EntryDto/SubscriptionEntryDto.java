@@ -2,12 +2,12 @@ package com.driver.EntryDto;
 
 import com.driver.model.SubscriptionType;
 
+
 public class SubscriptionEntryDto {
 
     private int userId;
     private SubscriptionType subscriptionType;
     private int noOfScreensRequired;
-    private int noOfScreensSubscribed;
 
     public SubscriptionEntryDto(int userId, SubscriptionType subscriptionType, int noOfScreensRequired) {
         this.userId = userId;
@@ -37,13 +37,5 @@ public class SubscriptionEntryDto {
 
     public void setNoOfScreensRequired(int noOfScreensRequired) {
         this.noOfScreensRequired = noOfScreensRequired;
-    }
-
-    public int getNoOfScreensSubscribed() {
-        return noOfScreensSubscribed;
-    }
-
-    public void setNoOfScreensSubscribed(int noOfScreensSubscribed) {
-        this.noOfScreensSubscribed = noOfScreensSubscribed;
     }
 }

@@ -1,3 +1,4 @@
+
 package com.driver.services;
 
 
@@ -15,7 +16,18 @@ public class ProductionHouseService {
 
     public Integer addProductionHouseToDb(ProductionHouseEntryDto productionHouseEntryDto){
 
-        return  null;
+        //dtoToEntity
+        ProductionHouse productionHouse= new ProductionHouse();
+        productionHouse.setName(productionHouseEntryDto.getName());
+
+        productionHouse.setRatings(0.0);
+
+        // Save to the database
+        ProductionHouse savedHouse = productionHouseRepository.save(productionHouse);
+
+        // Return the generated ID
+        return savedHouse.getId();
+
     }
 
 
